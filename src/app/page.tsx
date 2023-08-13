@@ -1,13 +1,19 @@
 "use client";
 
-import Question from "@/components/Question";
-import { answers, questions } from "@/const/Questons";
-import { Button, Container } from "@mui/material";
+import QuestionList from "@/components/QuestionList";
+import Result from "@/components/Result";
+import { questions } from "@/const/Questons";
+import { Container } from "@mui/material";
 import React, { useState } from "react";
 
+const QUESTION = 1;
+const RESULT = 2;
+type PageState = typeof QUESTION | typeof RESULT;
+
 const Home = () => {
+  const [pageState, setPageState] = useState<PageState>(QUESTION);
   const [userAnswer, setUserAnswer] = useState(
-    Array.from(questions).map(() => -1),
+    Array.from(questions).map(() => 0),
   );
 
   const onAnswerChange = (answer: number, row: number) => {
@@ -21,23 +27,20 @@ const Home = () => {
     );
   };
 
+  const onSubmitClick = () => {
+    if (pageState === QUESTION) setPageState(RESULT);
+  };
+
   return (
-    <Container className="flex flex-col min-h-screen w-full lg:w-8/12 justify-center overflow-y-auto items-center gap-4 py-8">
-      {questions.map(({ question }, index) => {
-        return (
-          <Question
-            key={index}
-            question={question}
-            row={index}
-            answerList={answers}
-            answer={userAnswer[index]}
-            setAnswer={onAnswerChange}
-          />
-        );
-      })}
-      <Button className="self-start mt-4 text-xl" variant="outlined">
-        تایید و دیدن نتایج
-      </Button>
+    <Container className="min-h-screen py-8">
+      {pageState === QUESTION && (
+        <QuestionList
+          userAnswer={userAnswer}
+          onAnswerChange={onAnswerChange}
+          onSubmitClick={onSubmitClick}
+        />
+      )}
+      {pageState === RESULT && <Result answers={userAnswer} />}
     </Container>
   );
 };
