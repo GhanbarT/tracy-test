@@ -1,4 +1,4 @@
-import { Answer } from "@/types/Question";
+import { Answer, Question } from "@/types/Question";
 import {
   Card,
   FormControl,
@@ -10,7 +10,7 @@ import {
 import React, { FC } from "react";
 
 export interface QuestionProps {
-  question: string;
+  question: Question;
   row: number;
   answerList: Array<Answer>;
   answer: Answer["value"];
@@ -31,7 +31,10 @@ const Question: FC<QuestionProps> = ({
   return (
     <Card className="w-full p-16 h-fit">
       <FormControl className="h-fit">
-        <FormLabel className="mb-3">{question}</FormLabel>
+        <FormLabel className="flex mb-3 gap-2">
+          <strong>{question.title}</strong>
+          <span>{question.question}</span>
+        </FormLabel>
         <RadioGroup value={answer} onChange={onAnswerChange}>
           {answerList.map(({ text, value }, index) => {
             return (
