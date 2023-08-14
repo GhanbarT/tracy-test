@@ -4,5 +4,7 @@ export type Answer = {
 };
 
 export type Question = {
+  row: number;
+  title: string;
   question: string;
 };
