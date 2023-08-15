@@ -3,6 +3,7 @@
 import QuestionList from "@/components/QuestionList";
 import Result from "@/components/Result";
 import { questions } from "@/const/Questons";
+import { Answer } from "@/types/Question";
 import { Container } from "@mui/material";
 import React, { useState } from "react";
 
@@ -12,7 +13,7 @@ type PageState = typeof QUESTION | typeof RESULT;
 
 const Home = () => {
   const [pageState, setPageState] = useState<PageState>(QUESTION);
-  const [userAnswer, setUserAnswer] = useState(
+  const [userAnswer, setUserAnswer] = useState<Array<Answer["value"]>>(
     Array.from(questions).map(() => 0),
   );
 
@@ -28,6 +29,16 @@ const Home = () => {
   };
 
   const onSubmitClick = () => {
+    console.log(userAnswer.length);
+    setUserAnswer((p) =>
+      p.map((ans) => {
+        if (!ans) {
+          return Math.floor(Math.random() * 6 + 1);
+        }
+        return ans;
+      }),
+    );
+
     if (pageState === QUESTION) setPageState(RESULT);
   };
 

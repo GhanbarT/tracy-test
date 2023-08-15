@@ -24,8 +24,7 @@ export default function calculateScores(
         }
         newFormula = newFormula.replace(sumMatch[0], String(sum));
       }
-      const score = eval(newFormula);
-      measure.score = score;
+      measure.score = eval(newFormula);
     }
   }
   return newMeasures;
