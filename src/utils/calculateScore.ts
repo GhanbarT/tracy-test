@@ -24,6 +24,7 @@ export default function calculateScores(
         }
         newFormula = newFormula.replace(sumMatch[0], String(sum));
       }
+      // FIXME: replace eval by a safe function, or change the process of calculating score
       measure.score = eval(newFormula);
     }
   }

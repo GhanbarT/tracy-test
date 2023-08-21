@@ -149,41 +149,47 @@ export const measures: Measures = {
     score: 0,
     order: 24,
   },
+  Art: {
+    name: "هنری",
+    formula: "SUM(Artistic)",
+    score: 0,
+    order: 25,
+  },
   Social: {
     name: "اجتماعی",
     formula: "(2 * SUM(AssistingServices) + SUM(SocialFacilitation)) / 3",
     score: 0,
-    order: 25,
+    order: 26,
   },
   Impulsive: {
     name: "تهوری",
     formula: "(2 * SUM(Management) + SUM(SocialFacilitation)) / 3",
     score: 0,
-    order: 26,
+    order: 27,
   },
   Conventional: {
     name: "قراردادی",
     formula: "(2 * SUM(DataProcessing) + SUM(RetailTrade)) / 3",
     score: 0,
-    order: 27,
+    order: 28,
   },
   PeopleObjects: {
     name: "مردم/اشیاء",
     formula: "SUM(People) - SUM(Objects)",
     score: 0,
-    order: 28,
+    order: 29,
   },
   DataIdeas: {
     name: "داده‌ها/عقاید",
     formula: "SUM(Ideas) - SUM(Data)",
     score: 0,
-    order: 29,
+    order: 30,
   },
   Prestige: {
     name: "پرستیژ",
     formula:
       "(2 * SUM(Leadership) + 0.71 * SUM(FinancialAnalysis,BusinessSystems,SocialSciences,NaturalSciences) - 2 * SUM(Handicrafts) - 0.71 * SUM(QualityControl,ConstructionRepair,PersonalServices,BasicServices)) / 2",
     score: 0,
-    order: 30,
+    order: 31,
   },
 };
